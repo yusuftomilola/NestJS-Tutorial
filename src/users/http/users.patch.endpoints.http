@@ -1,0 +1,9 @@
+// UPDATE A SINGLE USER
+PATCH http://localhost:3000/api/v1/users/6e708d0c-f87c-4d87-99ac-a08521943596
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNjIwZjY1Yi03Yzk5LTQzZGYtYjNkNi0wMDdmMGIzMmJmY2UiLCJlbWFpbCI6Im5pY2VtYW5AZ21haWwuY29tIiwiaWF0IjoxNzQ0Mjg1ODYxLCJleHAiOjE3NDQyODk0NjEsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCJ9.w9P9d0YL9-rdefkyhBDMVz6Q9ao1RyCmhhgC9hUTCsc
+
+{
+    "firstName": "Adigun",
+    "lastName": "Otababami"
+}

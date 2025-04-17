@@ -1,0 +1,11 @@
+// DELETE A USER
+DELETE http://localhost:3000/api/v1/users/a620f65b-7c99-43df-b3d6-007f0b32bfce
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNjIwZjY1Yi03Yzk5LTQzZGYtYjNkNi0wMDdmMGIzMmJmY2UiLCJlbWFpbCI6Im5pY2VtYW5AZ21haWwuY29tIiwiaWF0IjoxNzQ0Mjg1ODYxLCJleHAiOjE3NDQyODk0NjEsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCJ9.w9P9d0YL9-rdefkyhBDMVz6Q9ao1RyCmhhgC9hUTCsc
+
+# DELETE MULTIPLE USERS
+DELETE http://localhost:3000/api/v1/users/delete-multiple
+Content-Type: application/json
+
+{
+    "id": ["c593558f-b74a-4155-a770-04d724c669a1","abd38b7e-9b1a-40ba-b9e7-8922d329b6a4"]
+}
