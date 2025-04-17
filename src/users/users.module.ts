@@ -21,6 +21,8 @@ import { DeleteOneUserProvider } from './providers/deleteOneUser.provider';
 import { PaginationModule } from 'src/common/pagination/pagination.module';
 import { CreateManyUsersProvider } from './providers/createManyUsers.provider';
 import { DeleteManyUsersProvider } from './providers/deleteManyUsers.provider';
+import { GetUserProfileProvider } from './providers/getUserProfile.provider';
+import { CreateAdminProvider } from './providers/createAdminUser.provider';
 
 @Module({
   imports: [
@@ -47,6 +49,8 @@ import { DeleteManyUsersProvider } from './providers/deleteManyUsers.provider';
     DeleteOneUserProvider,
     CreateManyUsersProvider,
     DeleteManyUsersProvider,
+    GetUserProfileProvider,
+    CreateAdminProvider,
   ],
   exports: [UsersService],
 })

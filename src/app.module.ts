@@ -20,7 +20,6 @@ const ENV = process.env.NODE_ENV;
 
 @Module({
   imports: [
-    PassportModule.register({}),
     AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,

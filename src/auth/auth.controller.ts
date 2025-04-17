@@ -34,7 +34,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   // LOGIN ROUTE
-  // @IsPublic()
+  @IsPublic()
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)

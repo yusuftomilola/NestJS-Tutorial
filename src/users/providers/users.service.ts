@@ -24,6 +24,10 @@ import { CreateManyUsersDto } from '../dtos/createManyUsers.dto';
 import { CreateManyUsersProvider } from './createManyUsers.provider';
 import { DeleteManyUsersProvider } from './deleteManyUsers.provider';
 import { DeleteManyUsersDto } from '../dtos/deleteManyUsers.dto';
+import { GetUserProfileProvider } from './getUserProfile.provider';
+import { CreateAdminProvider } from './createAdminUser.provider';
+import { CreateAdminDto } from '../dtos/createAdmin.dto';
+import { UserRole } from 'src/auth/enums/roles.enum';
 
 @Injectable()
 export class UsersService {
@@ -57,6 +61,10 @@ export class UsersService {
     private readonly createManyUsersProvider: CreateManyUsersProvider,
 
     private readonly deleteManyUsersProviders: DeleteManyUsersProvider,
+
+    private readonly getUserProfileProvider: GetUserProfileProvider,
+
+    private readonly createAdminProvider: CreateAdminProvider,
   ) {}
 
   // CREATE A SINGLE USER
@@ -144,5 +152,21 @@ export class UsersService {
   // DELETE MANY USERS
   public async deleteManyUsers(deleteManyUsersDto: DeleteManyUsersDto) {
     return await this.deleteManyUsersProviders.deleteUsers(deleteManyUsersDto);
+  }
+
+  // GET USER PROFILE
+  public async getUserProfile(user: User) {
+    return await this.getUserProfileProvider.getUserProfile(user);
+  }
+
+  // CREATE ADMIN USER
+  public async createAdmin(
+    createAdminDto: CreateAdminDto,
+    creatorRole?: UserRole,
+  ) {
+    return await this.createAdminProvider.createAdmin(
+      createAdminDto,
+      creatorRole,
+    );
   }
 }

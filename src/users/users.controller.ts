@@ -30,6 +30,7 @@ import { DeleteManyUsersDto } from './dtos/deleteManyUsers.dto';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { UserRole } from 'src/auth/enums/roles.enum';
 import { IsPublic } from 'src/auth/decorators/public.decorator';
+import { CreateAdminDto } from './dtos/createAdmin.dto';
 
 @Controller('api/v1/users')
 @ApiTags('Users')
@@ -121,6 +122,21 @@ export class UsersController {
     return await this.usersService.findAllUsers(paginationQueryDto);
   }
 
+  // GET USER PROFILE
+  @Get('profile')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Retrieve the profile of the user',
+    description: 'Get the profile of the currently logged in user',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully retrieved the profile of the user',
+  })
+  public async getUserProfile(@GetUser() user: User) {
+    return await this.usersService.getUserProfile(user);
+  }
+
   // FIND ONE USER
   @Get(':id')
   @Roles(UserRole.ADMIN)
@@ -188,7 +204,15 @@ export class UsersController {
   @Post('create-multiple')
   @Roles(UserRole.ADMIN)
   @ApiBearerAuth()
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({
+    summary: 'create many users',
+    description: 'admins use this endpoint to create many users',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'users created successfully',
+  })
   public async createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return await this.usersService.createManyUsers(createManyUsersDto);
   }
@@ -197,7 +221,37 @@ export class UsersController {
   @Delete('delete-multiple')
   @Roles(UserRole.ADMIN)
   @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'delete many users',
+    description: 'admins use this endpoint to delete many users',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'users deleted successfully',
+  })
   public async deleteManyUsers(@Body() deleteManyUsersDto: DeleteManyUsersDto) {
     return await this.usersService.deleteManyUsers(deleteManyUsersDto);
+  }
+
+  // CREATE ADMIN USER
+  @Post('create-admin')
+  @Roles(UserRole.ADMIN)
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Create a new admin user',
+    description: 'logged in admins use this endpoint to create other admins',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'The admin has been successfully created.',
+  })
+  @ApiResponse({ status: 409, description: 'Email already exists.' })
+  @ApiResponse({ status: 403, description: 'Forbidden - requires admin role.' })
+  public async createAdmin(
+    @Body() createAdminDto: CreateAdminDto,
+    @GetUser() user: User,
+  ) {
+    console.log(createAdminDto);
+    return await this.usersService.createAdmin(createAdminDto, user.role);
   }
 }

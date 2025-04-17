@@ -19,3 +19,36 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNjIwZjY1Y
     "currentPassword": "Mainmainceh63dfuer76f$ferf",
     "newPassword": "Mai6473h63dfuer76f$ferf"
 }
+
+// CREATE MANY USERS
+POST http://localhost:3000/api/v1/users/create-multiple
+Content-Type: application/json
+
+{
+    "users": [
+        {
+    "firstName": "fada",
+    "lastName": "fedi",
+    "email": "hedwej@gmail.com",
+    "password": "Adejare.544$$"
+},
+ {
+    "firstName": "remi",
+    "lastName": "dasw",
+    "email": "fwef@gmail.com",
+    "password": "Adejare.544$$"
+} 
+]
+}
+
+// CREATE ADMIN USER
+POST http://localhost:3000/api/v1/users/create-admin
+Content-Type: application/json
+
+{
+    "firstName": "Baami",
+    "lastName": "Ademi",
+    "username": "adebam",
+    "email": "adebam@gmail.com",
+    "password": "Adetomi.544$$"
+}
